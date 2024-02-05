@@ -1,0 +1,22 @@
+body {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: rgb(63,94,251);
+  background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(103,89,221,1) 21%, rgba(127,86,202,1) 34%, rgba(154,82,182,1) 48%, rgba(197,77,149,1) 80%, rgba(252,70,107,1) 100%);
+
+}
+
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+
+
+
+
