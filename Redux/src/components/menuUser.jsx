@@ -1,10 +1,13 @@
-import React,{useContext} from 'react';
 import { connect } from 'react-redux';
+import { store } from '../redeux/store';
 
-const MenuUsuario = ({ user }) => {
+
+
+const MenuUsuario = () => {
+  const name = store.getState().user1.name;
   return (
     <div>
-      <h2>Bienvenido, {user.name}!</h2>
+      <h2>Bienvenido, {name}!</h2>
     </div>
   );
 };

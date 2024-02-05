@@ -9,8 +9,8 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
   const login = (username, password) => {
-    // Lógica de autenticación aquí (ejemplo simple)
-    if (username === 'usuario' && password === 'contraseña') {
+    
+    if (username === 'pepe' && password === 'pepona') {
       setUser({ username });
     } else {
       setUser(null);

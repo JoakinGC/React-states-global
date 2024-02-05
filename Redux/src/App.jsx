@@ -2,33 +2,21 @@ import React from 'react';
 import { connect } from 'react-redux';
 import LoginComponent from './components/login';
 import MenuUser from './components/menuUser';
-import { toggleLogin,setUser } from './redeux/actions';
 
-const App = ({ user, loginToggle, toggleLogin, setUser }) => {
+const App = ({ isLoggedIn }) => {
   return (
     <div>
-      {user ? (
+      {isLoggedIn ? (
         <MenuUser />
       ) : (
-        <LoginComponent
-          loginToggle={loginToggle}
-          toggleLogin={toggleLogin}
-          setUser={setUser}
-          user={user}
-        />
+        <LoginComponent />
       )}
     </div>
   );
 };
 
 const mapStateToProps = (state) => ({
-  loginToggle: state.loginToggle,
-  user: state.user,
+  isLoggedIn: state.isLoggedIn,
 });
 
-const mapDispatchToProps = {
-  toggleLogin,
-  setUser,
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps)(App);
