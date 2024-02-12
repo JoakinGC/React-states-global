@@ -1,9 +1,12 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 import LoginComponent from './components/login';
 import MenuUser from './components/menuUser';
 
-const App = ({ isLoggedIn }) => {
+
+const App = () => {
+  const datos = useSelector(state => state.userActual);
+  const {isLoggedIn} = datos;
   return (
     <div>
       {isLoggedIn ? (
@@ -15,8 +18,6 @@ const App = ({ isLoggedIn }) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  isLoggedIn: state.isLoggedIn,
-});
 
-export default connect(mapStateToProps)(App);
+
+export default App;

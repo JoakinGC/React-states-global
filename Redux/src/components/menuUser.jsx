@@ -4,7 +4,7 @@ import { store } from '../redeux/store';
 
 
 const MenuUsuario = () => {
-  const name = store.getState().user1.name;
+  const name = store.getState().username;
   return (
     <div>
       <h2>Bienvenido, {name}!</h2>

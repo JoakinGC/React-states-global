@@ -1,19 +1,22 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { setUsername, setPassword, toggleLogin } from '../redeux/actions';
-import { store } from '../redeux/store'; 
+import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { setUsername, setPassword, toggleLogin, setUsernameActual, setPasswordActual } from '../redeux/actions';
 
-const valor = store.getState();
-const nombre = valor.user1.name;
-const password2 = valor.user1.password;
+const LoginComponent = () => {
+  const reduce1 = useSelector(state => state.reduceUser1);
+  const reduceActual = useSelector(state => state.userActual);
+  const {username,password,isLoggedIn} = reduceActual; 
+  const { name, password2 } = reduce1;
+  const dispatch = useDispatch();
 
-const LoginComponent = ({ toggleLogin, setUsername, setPassword, username, password, isLoggedIn }) => {
   const handleLogin = () => {
-    //Aqui se puede hacer un fetch
-    if (username === nombre && password === password2) {
-      toggleLogin();
+    // Aquí se puede hacer un fetch
+    console.log(name,reduce1.password2);
+    console.log(username,password);
+    if (username === name && password === reduce1.password2) {
+      dispatch(toggleLogin())
     } else {
-      console.error("NO valido");
+      console.error("NO válido");
       console.log(username, " ", password);
     }
   };
@@ -25,14 +28,14 @@ const LoginComponent = ({ toggleLogin, setUsername, setPassword, username, passw
         type="text"
         placeholder="Username"
         value={username}
-        onChange={(e) => setUsername(e.target.value)}
+        onChange={(e) => dispatch(setUsernameActual(e.target.value))}
       />
       <input
         className='password-login'
         type="password"
         placeholder="Password"
         value={password}
-        onChange={(e) => setPassword(e.target.value)}
+        onChange={(e) => dispatch(setPasswordActual(e.target.value))}
       />
       <button className='button-login' onClick={handleLogin}>
         {isLoggedIn ? 'Logout' : 'Login'}
@@ -41,16 +44,4 @@ const LoginComponent = ({ toggleLogin, setUsername, setPassword, username, passw
   );
 };
 
-const mapStateToProps = (state) => ({
-  username: state.username,
-  password: state.password,
-  isLoggedIn: state.isLoggedIn,
-});
-
-const mapDispatchToProps = {
-  setUsername,
-  setPassword,
-  toggleLogin,
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(LoginComponent);
+export default LoginComponent;
